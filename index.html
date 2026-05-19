@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>DevOps Deployment Dashboard</title>
+
+    <link rel="stylesheet" href="style.css">
+
+</head>
+
+<body>
+
+    <header>
+
+        <h1>DevOps Deployment Dashboard</h1>
+
+        <p>
+            Automated CI/CD Pipeline using GitHub, Jenkins and AWS EC2
+        </p>
+
+    </header>
+
+    <section class="cards">
+
+        <div class="card">
+
+            <h2>GitHub Repository</h2>
+
+            <p>
+                Source code managed using Git and GitHub version control.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>Jenkins CI/CD</h2>
+
+            <p>
+                Automated pipeline configured for build and deployment.
+            </p>
+
+        </div>
+
+        <div class="card">
+
+            <h2>AWS EC2 Deployment</h2>
+
+            <p>
+                Website hosted on AWS EC2 cloud infrastructure.
+            </p>
+
+        </div>
+
+    </section>
+    <section class="metrics">
+
+    <div class="metric-card">
+
+        <h2>25</h2>
+        <p>Total Deployments</p>
+
+    </div>
+
+    <div class="metric-card">
+
+        <h2>22</h2>
+        <p>Successful Builds</p>
+
+    </div>
+
+    <div class="metric-card">
+
+        <h2>3</h2>
+        <p>Failed Builds</p>
+
+    </div>
+
+    <div class="metric-card">
+
+        <h2>ACTIVE</h2>
+        <p>Server Status</p>
+
+    </div>
+
+</section>
+
+<section class="time-section">
+
+    <h2>Current Server Time</h2>
+
+    <h3 id="time"></h3>
+
+</section>
+    <section class="status-section">
+
+        <h2>Deployment Status</h2>
+
+        <button onclick="deployStatus()">
+            Check Deployment
+        </button>
+
+        <h3 id="status"></h3>
+
+    </section>
+
+    <footer>
+
+        <p>
+            DevOps Project | CI/CD Automation | AWS Cloud
+        </p>
+
+    </footer>
+
+    <script>
+
+        function deployStatus() {
+
+            document.getElementById("status").innerHTML =
+                "Deployment Successful on AWS EC2 Server";
+
+        }
+        setInterval(showTime, 1000);
+
+function showTime() {
+
+    const now = new Date();
+
+    document.getElementById("time").innerHTML =
+        now.toLocaleString();
+
+}
+
+    </script>
+
+</body>
+
+</html>
