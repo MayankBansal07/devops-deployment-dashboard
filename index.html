@@ -6,7 +6,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <title>DevOps Deployment Dashboard</title>
+    <title>Library Management System</title>
 
     <link rel="stylesheet" href="style.css">
 
@@ -14,126 +14,234 @@
 
 <body>
 
+    <!-- HEADER -->
+
     <header>
 
-        <h1>DevOps Deployment Dashboard</h1>
+        <h1>Library Management System</h1>
 
         <p>
-            Automated CI/CD Pipeline using GitHub, Jenkins and AWS EC2
+            DevOps CI/CD Project using GitHub, Jenkins and AWS EC2
         </p>
 
     </header>
 
-    <section class="cards">
+    <!-- MAIN CONTAINER -->
 
-        <div class="card">
+    <div class="container">
 
-            <h2>GitHub Repository</h2>
+        <!-- DASHBOARD CARDS -->
 
-            <p>
-                Source code managed using Git and GitHub version control.
-            </p>
+        <div class="dashboard">
 
-        </div>
+            <div class="card">
+                <h2>120</h2>
+                <p>Total Books</p>
+            </div>
 
-        <div class="card">
+            <div class="card">
+                <h2>85</h2>
+                <p>Available Books</p>
+            </div>
 
-            <h2>Jenkins CI/CD</h2>
+            <div class="card">
+                <h2>12</h2>
+                <p>Borrowed Books</p>
+            </div>
 
-            <p>
-                Automated pipeline configured for build and deployment.
-            </p>
-
-        </div>
-
-        <div class="card">
-
-            <h2>AWS EC2 Deployment</h2>
-
-            <p>
-                Website hosted on AWS EC2 cloud infrastructure.
-            </p>
+            <div class="card">
+                <h2>ACTIVE</h2>
+                <p>Library Status</p>
+            </div>
 
         </div>
 
-    </section>
-    <section class="metrics">
+        <!-- ADD BOOK SECTION -->
 
-    <div class="metric-card">
+        <div class="form-section">
 
-        <h2>25</h2>
-        <p>Total Deployments</p>
+            <h2>Add New Book</h2>
+
+            <input
+                type="text"
+                id="bookName"
+                placeholder="Enter Book Name"
+            >
+
+            <input
+                type="number"
+                id="bookQty"
+                placeholder="Enter Quantity"
+            >
+
+            <button onclick="addBook()">
+                Add Book
+            </button>
+
+        </div>
+
+        <!-- TABLE SECTION -->
+
+        <div class="table-section">
+
+            <h2>Available Books</h2>
+
+            <table>
+
+                <thead>
+
+                    <tr>
+
+                        <th>Book Name</th>
+                        <th>Quantity</th>
+                        <th>Status</th>
+                        <th>Action</th>
+
+                    </tr>
+
+                </thead>
+
+                <tbody id="bookTable">
+
+                    <tr>
+                        <td>Database Management System</td>
+                        <td>15</td>
+                        <td>
+                            <span class="available">
+                                Available
+                            </span>
+                        </td>
+                        <td>
+                            <button onclick="deleteBook(this)">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Operating System</td>
+                        <td>5</td>
+                        <td>
+                            <span class="lowstock">
+                                Low Stock
+                            </span>
+                        </td>
+                        <td>
+                            <button onclick="deleteBook(this)">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+
+                    <tr>
+                        <td>Computer Networks</td>
+                        <td>0</td>
+                        <td>
+                            <span class="outstock">
+                                Out of Stock
+                            </span>
+                        </td>
+                        <td>
+                            <button onclick="deleteBook(this)">
+                                Delete
+                            </button>
+                        </td>
+                    </tr>
+
+                </tbody>
+
+            </table>
+
+        </div>
 
     </div>
 
-    <div class="metric-card">
-
-        <h2>22</h2>
-        <p>Successful Builds</p>
-
-    </div>
-
-    <div class="metric-card">
-
-        <h2>3</h2>
-        <p>Failed Builds</p>
-
-    </div>
-
-    <div class="metric-card">
-
-        <h2>ACTIVE</h2>
-        <p>Server Status</p>
-
-    </div>
-
-</section>
-
-<section class="time-section">
-
-    <h2>Current Server Time</h2>
-
-    <h3 id="time"></h3>
-
-</section>
-    <section class="status-section">
-
-        <h2>Deployment Status</h2>
-
-        <button onclick="deployStatus()">
-            Check Deployment
-        </button>
-
-        <h3 id="status"></h3>
-
-    </section>
+    <!-- FOOTER -->
 
     <footer>
 
         <p>
-            DevOps Project | CI/CD Automation | AWS Cloud
+            Automated Deployment using Jenkins CI/CD Pipeline
         </p>
 
     </footer>
 
+    <!-- JAVASCRIPT -->
+
     <script>
 
-        function deployStatus() {
+        function addBook() {
 
-            document.getElementById("status").innerHTML =
-                "Deployment Successful on AWS EC2 Server";
+            let name =
+                document.getElementById("bookName").value;
+
+            let qty =
+                document.getElementById("bookQty").value;
+
+            if (name === "" || qty === "") {
+
+                alert("Please enter all fields");
+
+                return;
+
+            }
+
+            let table =
+                document.getElementById("bookTable");
+
+            let row =
+                table.insertRow();
+
+            row.insertCell(0).innerHTML = name;
+
+            row.insertCell(1).innerHTML = qty;
+
+            if (qty > 10) {
+
+                row.insertCell(2).innerHTML =
+                    `<span class="available">
+                        Available
+                    </span>`;
+
+            }
+
+            else if (qty > 0) {
+
+                row.insertCell(2).innerHTML =
+                    `<span class="lowstock">
+                        Low Stock
+                    </span>`;
+
+            }
+
+            else {
+
+                row.insertCell(2).innerHTML =
+                    `<span class="outstock">
+                        Out of Stock
+                    </span>`;
+
+            }
+
+            row.insertCell(3).innerHTML =
+                `<button onclick="deleteBook(this)">
+                    Delete
+                </button>`;
+
+            document.getElementById("bookName").value = "";
+
+            document.getElementById("bookQty").value = "";
 
         }
-        setInterval(showTime, 1000);
 
-function showTime() {
+        function deleteBook(button) {
 
-    const now = new Date();
+            let row =
+                button.parentNode.parentNode;
 
-    document.getElementById("time").innerHTML =
-        now.toLocaleString();
+            row.remove();
 
-}
+        }
 
     </script>
 
