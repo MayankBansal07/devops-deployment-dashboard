@@ -3,9 +3,9 @@ pipeline {
 
     stages {
 
-        stage('Clone') {
+        stage('Clone Code') {
             steps {
-                echo 'Code Cloned'
+                git 'https://github.com/MayankBansal07/devops-deployment-dashboard.git'
             }
         }
 
@@ -15,15 +15,11 @@ pipeline {
             }
         }
 
-        stage('Test') {
-            steps {
-                echo 'Testing Successful'
-            }
-        }
-
         stage('Deploy') {
             steps {
-                echo 'Deployment Successful'
+                sh '''
+                sudo cp -r * /var/www/html/
+                '''
             }
         }
     }
