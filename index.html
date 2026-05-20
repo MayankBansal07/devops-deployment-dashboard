@@ -1,39 +1,38 @@
 <!DOCTYPE html>
 <html lang="en">
-<h1>CI/CD Pipeline Working Successfully</h1>
-<h2>Automatic CI/CD Trigger Working</h2>
-<head>
 
+<head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
     <title>Library Management System</title>
 
     <link rel="stylesheet" href="style.css">
 
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap"
+        rel="stylesheet">
 </head>
 
 <body>
 
-    <!-- HEADER -->
+    <section class="hero">
 
-    <header>
+        <div class="hero-content">
 
-        <h1>Library Management System</h1>
+            <h1>Library Management System</h1>
 
-        <p>
-            DevOps CI/CD Project using GitHub, Jenkins and AWS EC2
-        </p>
+            <p>
+                Automated DevOps CI/CD Project using GitHub, Jenkins and AWS EC2
+            </p>
 
-    </header>
+        </div>
 
-    <!-- MAIN CONTAINER -->
+    </section>
 
     <div class="container">
 
-        <!-- DASHBOARD CARDS -->
+        <!-- Stats -->
 
-        <div class="dashboard">
+        <div class="stats">
 
             <div class="card">
                 <h2>120</h2>
@@ -57,33 +56,23 @@
 
         </div>
 
-        <!-- ADD BOOK SECTION -->
+        <!-- Add Book -->
 
-        <div class="form-section">
+        <div class="section">
 
             <h2>Add New Book</h2>
 
-            <input
-                type="text"
-                id="bookName"
-                placeholder="Enter Book Name"
-            >
+            <input type="text" placeholder="Enter Book Name">
 
-            <input
-                type="number"
-                id="bookQty"
-                placeholder="Enter Quantity"
-            >
+            <input type="number" placeholder="Enter Quantity">
 
-            <button onclick="addBook()">
-                Add Book
-            </button>
+            <button>Add Book</button>
 
         </div>
 
-        <!-- TABLE SECTION -->
+        <!-- Table -->
 
-        <div class="table-section">
+        <div class="section">
 
             <h2>Available Books</h2>
 
@@ -92,60 +81,40 @@
                 <thead>
 
                     <tr>
-
                         <th>Book Name</th>
                         <th>Quantity</th>
                         <th>Status</th>
                         <th>Action</th>
-
                     </tr>
 
                 </thead>
 
-                <tbody id="bookTable">
+                <tbody>
 
                     <tr>
                         <td>Database Management System</td>
                         <td>15</td>
+                        <td class="available">Available</td>
                         <td>
-                            <span class="available">
-                                Available
-                            </span>
-                        </td>
-                        <td>
-                            <button onclick="deleteBook(this)">
-                                Delete
-                            </button>
+                            <button class="delete-btn">Delete</button>
                         </td>
                     </tr>
 
                     <tr>
                         <td>Operating System</td>
                         <td>5</td>
+                        <td class="low">Low Stock</td>
                         <td>
-                            <span class="lowstock">
-                                Low Stock
-                            </span>
-                        </td>
-                        <td>
-                            <button onclick="deleteBook(this)">
-                                Delete
-                            </button>
+                            <button class="delete-btn">Delete</button>
                         </td>
                     </tr>
 
                     <tr>
                         <td>Computer Networks</td>
                         <td>0</td>
+                        <td class="out">Out of Stock</td>
                         <td>
-                            <span class="outstock">
-                                Out of Stock
-                            </span>
-                        </td>
-                        <td>
-                            <button onclick="deleteBook(this)">
-                                Delete
-                            </button>
+                            <button class="delete-btn">Delete</button>
                         </td>
                     </tr>
 
@@ -157,94 +126,11 @@
 
     </div>
 
-    <!-- FOOTER -->
-
     <footer>
 
-        <p>
-            Automated Deployment using Jenkins CI/CD Pipeline
-        </p>
+        Automated Deployment using Jenkins CI/CD Pipeline
 
     </footer>
-
-    <!-- JAVASCRIPT -->
-
-    <script>
-
-        function addBook() {
-
-            let name =
-                document.getElementById("bookName").value;
-
-            let qty =
-                document.getElementById("bookQty").value;
-
-            if (name === "" || qty === "") {
-
-                alert("Please enter all fields");
-
-                return;
-
-            }
-
-            let table =
-                document.getElementById("bookTable");
-
-            let row =
-                table.insertRow();
-
-            row.insertCell(0).innerHTML = name;
-
-            row.insertCell(1).innerHTML = qty;
-
-            if (qty > 10) {
-
-                row.insertCell(2).innerHTML =
-                    `<span class="available">
-                        Available
-                    </span>`;
-
-            }
-
-            else if (qty > 0) {
-
-                row.insertCell(2).innerHTML =
-                    `<span class="lowstock">
-                        Low Stock
-                    </span>`;
-
-            }
-
-            else {
-
-                row.insertCell(2).innerHTML =
-                    `<span class="outstock">
-                        Out of Stock
-                    </span>`;
-
-            }
-
-            row.insertCell(3).innerHTML =
-                `<button onclick="deleteBook(this)">
-                    Delete
-                </button>`;
-
-            document.getElementById("bookName").value = "";
-
-            document.getElementById("bookQty").value = "";
-
-        }
-
-        function deleteBook(button) {
-
-            let row =
-                button.parentNode.parentNode;
-
-            row.remove();
-
-        }
-
-    </script>
 
 </body>
 
